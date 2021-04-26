@@ -8,31 +8,33 @@
 
 <script>
 export default {
-    name: "login",
-    data(){
-        return{
-            mail: '',
-            password: ''
-        }
-    },
+	name: "login",
+	data() {
+		return {
+			mail: '',
+			password: ''
+		}
+	},
 
-    methods: {
-        login(){
-					try{
-            this.$axios.post('/api/login',{
-                headers: { "Content-Type": "application/json" },
-                body:{
-                    	mail: this.mail,
-                      password: this.password
-										},
-								credentials: 'include'
-            }).then(response => console.log(response.data))
-						this.$router.push('/')
-					} catch (e) {
-						console.log(e)
-					}
-        }	
-    }
+	methods: {
+		login() {
+			try {
+				this.$axios.post('/api/login', {
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: {
+						mail: this.mail,
+						password: this.password
+					},
+					credentials: 'include'
+				}).then(response => console.log(response.data))
+				this.$router.push('/')
+			} catch (e) {
+				console.log(e)
+			}
+		}
+	}
 
 }
 </script>
