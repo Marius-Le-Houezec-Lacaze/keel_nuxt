@@ -1,8 +1,8 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div 
-    v-if="isShown"
-    class="fixed z-10 inset-0 overflow-y-auto"
+  <div
+    @keydown.esc="$emit('toggleModal')"
+    class="modal fixed z-10 inset-0 overflow-y-auto"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
@@ -23,6 +23,8 @@
       <div
         class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         aria-hidden="true"
+        v-on:click="close"
+
       ></div>
 
       <!-- This element is to trick the browser into centering the modal contents. -->
@@ -34,8 +36,10 @@
       <div
         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
       >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            
+        <div
+          class="bg-white p-4 flex justify-items-center items-center"
+        >
+          <slot></slot>
         </div>
       </div>
     </div>
@@ -44,17 +48,17 @@
 
 <script>
 export default {
-    data(){
-        return{
-            isShown: false
-        }
+  props: ["toggle"],
+
+  methods: {
+    close() {
+      this.$emit("toggleModal");
     },
 
-    method:{
-        toggle(){
-            this.isShown = !this.isShown; 
-        }
+    test(){
+      alert("test")
     }
+  },
 };
 </script>
 
