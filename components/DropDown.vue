@@ -1,10 +1,10 @@
 <template>
   <div class="dropdown text-center ">
-    <div v-on:click="toggle" class="bg-red-100 w-20 cursor-pointer border-t-2 border-l-2 border-r-2">
+    <div v-on:click="toggle" class="bg-blue-600 text-white p-1 w-36 cursor-pointer ">
       Trier part:
     </div>
-    <ul v-if="isMenuVisible" class="absolute w-20 bg-white">
-      <li>test</li>
+    <ul v-if="isMenuVisible" class="absolute w-48 cursor-pointer md:-ml-28 lg:ml-0 sm:-ml-28 shadow-inner bg-white">
+      <slot></slot>
     </ul>
   </div>
 </template>

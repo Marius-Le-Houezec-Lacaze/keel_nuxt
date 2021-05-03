@@ -11,7 +11,7 @@
 export default {
   date() {
     return {
-      message: '',
+      message: "",
     };
   },
   mounted() {

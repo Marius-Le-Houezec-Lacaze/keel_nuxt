@@ -9,7 +9,7 @@
         </div>
       </Modal>
     </div>
-    <div class="flex flex-1 items-center justify-center">
+    <div class="flex flex-1 items-center justify-center" v-if="!auth">
       <div
         class="m-2 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center"
       >
@@ -63,7 +63,17 @@ export default {
       password: "",
       error: null,
       isModalVisible: false,
+      auth: false
     };
+  },
+
+  beforeMount(){
+    this.$nuxt.$on('auth', auth =>  {
+      if(auth){
+        this.auth = true
+        this.$router.push('/')
+      }
+    })
   },
 
   methods: {
