@@ -1,6 +1,7 @@
-
-export default (context) => {
-    if (!context.app.context.app.$cookies.get('bearer')) {
-        return context.redirect('/login')
-    }
-}
+export default context => {
+  context.$axios
+    .get("/api/user")
+    .then(resp => {
+      return true
+    });
+};

@@ -34,8 +34,17 @@
         <div v-if="!this.editModal">
           <form action="" @submit.prevent="new_item">
             <div class="flex justify-between space-x-2">
-              <TextField placeholder="Titre" class="w-10/12" v-model="newItem.title" />
-              <TextField placeholder="prix" class="w-2/12" v-model.number="newItem.price"  v-on:keypress="test($event)"/>
+              <TextField
+                placeholder="Titre"
+                class="w-10/12"
+                v-model="newItem.title"
+              />
+              <TextField
+                placeholder="prix"
+                class="w-2/12"
+                v-model.number="newItem.price"
+                v-on:keypress="test($event)"
+              />
             </div>
             <div>
               <label>
@@ -80,13 +89,15 @@
                 </button>
               </div>
             </div>
-            <div class="mt-2">
+            <div class="mt-2 break-all">
               <p v-if="!edit">{{ post.description }}</p>
               <TextArea
                 v-if="edit"
                 :text="post.description"
                 v-bind:value="newItem.desc"
               />
+
+              <button v-if="edit">Sauvegarder changement</button>
             </div>
           </div>
         </div>
@@ -182,8 +193,8 @@ export default {
   },
 
   methods: {
-    test(ev){
-      alert(ev)
+    test(ev) {
+      alert(ev);
     },
     new_item() {
       console.log({
@@ -242,8 +253,15 @@ export default {
         .catch(err => {
           console.log(err.code);
         })
-        .then(response => console.log(response));
-      this.toggle_modal();
+        .then(response => {
+          console.log(response);
+          this.items = this.items.filter(item => {
+            return item.title !== response.data.title;
+          });
+          this.items.push(response.data);
+        }),
+        this.toggle_modal();
+        this.post.margin += 0
     },
 
     descending() {

@@ -2,7 +2,7 @@
   <!-- This example requires Tailwind CSS v2.0+ -->
   <div
     @keydown.esc="$emit('toggleModal')"
-    class="modal fixed z-10 inset-0 overflow-y-auto"
+    class="modal fixed z-40 inset-0 overflow-y-auto"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
@@ -14,7 +14,6 @@
         class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         aria-hidden="true"
         v-on:click="close"
-
       ></div>
 
       <span
@@ -23,11 +22,9 @@
         >&#8203;</span
       >
       <div
-        class="inline-block align-bottom bg-white w-full rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-6/12 sm:w-full"
+        class="inline-block pop-in align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full"
       >
-        <div
-          class="bg-white p-4 flex justify-items-center items-center"
-        >
+        <div class="bg-white p-4 flex justify-items-center items-center">
           <slot></slot>
         </div>
       </div>
@@ -44,12 +41,47 @@ export default {
       this.$emit("toggleModal");
     },
 
-    test(){
-      alert("test")
+    test() {
+      alert("test");
     }
-  },
+  }
 };
 </script>
 
-<style>
+<style lang="postcss">
+@-webkit-keyframes pop-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+@-moz-keyframes pop-in {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: scale(1);
+  }
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.pop-in {
+  -webkit-animation: pop-in 0.5s;
+  -moz-animation: pop-in 0.5s;
+  -ms-animation: pop-in 0.5s;
+}
 </style>

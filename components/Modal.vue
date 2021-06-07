@@ -34,7 +34,7 @@
         >&#8203;</span
       >
       <div
-        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        class="inline-block pop-in align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
       >
         <div
           class="bg-white p-4 flex justify-items-center items-center"
@@ -62,5 +62,42 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
+
+@-webkit-keyframes pop-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+@-moz-keyframes pop-in {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: scale(1);
+  }
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.pop-in {
+  -webkit-animation: pop-in 0.5s;
+  -moz-animation: pop-in 0.5s;
+  -ms-animation: pop-in 0.5s;
+}
+
 </style>
